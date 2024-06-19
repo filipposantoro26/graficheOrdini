@@ -1,0 +1,16 @@
+<div class="container mt-5">
+  <table class="table table-striped table-hover table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th *ngFor="let column of columns">{{ column }}</th>
+        <th *ngFor="let action of actions">{{ action.label }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of tableData; let i = index">
+        <td *ngFor="let column of columns">{{ row.data[column] }}</td>
+        <td *ngFor="let action of actions" (click)="action.action(row)" ><div class="btn btn-light">{{ action.label }}</div></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
