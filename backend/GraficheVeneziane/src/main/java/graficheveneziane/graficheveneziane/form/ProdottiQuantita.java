@@ -8,5 +8,5 @@ import lombok.Setter;
 @Setter
 public class ProdottiQuantita{
     private Prodotto prodotto;
-    private int quantita;
+    private double quantita;
 }

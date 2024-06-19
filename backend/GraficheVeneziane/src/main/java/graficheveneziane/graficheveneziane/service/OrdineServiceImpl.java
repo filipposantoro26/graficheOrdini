@@ -47,7 +47,7 @@ public class OrdineServiceImpl implements OrdineService {
     }
 
     public List<Ordine> getOrders() {
-        return (List<Ordine>) ordineRepository.findAll();
+        return (List<Ordine>) ordineRepository.findAllByOrderByDateCreatedDesc();
     }
 
     public Ordine getOrderById(Long id) {

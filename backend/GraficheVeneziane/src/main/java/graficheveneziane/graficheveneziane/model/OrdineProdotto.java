@@ -27,7 +27,7 @@ public class OrdineProdotto {
     private Prodotto prodotto;
 
     @Column
-    private int quantita;
+    private double quantita;
 
 
 }
