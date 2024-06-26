@@ -41,4 +41,26 @@ public class ProdottoServiceImpl implements ProdottoService{
     public List<Prodotto> getProdottiFornitore(Long id_fornitore) {
         return prodottoRepository.getProdottiFornitore(id_fornitore);
     }
+
+    @Override
+    public Prodotto getProduct(Long id_prodotto) {
+        return prodottoRepository.findById(id_prodotto).isPresent()?prodottoRepository.findById(id_prodotto).get():null;
+    }
+
+    @Override
+    public String editProdoto(Prodotto prodotto) {
+        Optional<Prodotto> prodottoOptional = prodottoRepository.findById(prodotto.getId_prodotto());
+        if(prodottoOptional.isPresent()){
+            Prodotto prodottoToEdit= prodottoOptional.get();
+            prodottoToEdit.setNome_prodotto(prodotto.getNome_prodotto());
+            prodottoToEdit.setDescrizione_prodotto(prodotto.getDescrizione_prodotto());
+            prodottoToEdit.setPrezzo(prodotto.getPrezzo());
+            prodottoRepository.save(prodottoToEdit);
+            return "Modificato Correttamente";
+        }else{
+            return "Prodotto non presente";
+        }
+    }
+
+
 }

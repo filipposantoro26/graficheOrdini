@@ -22,7 +22,17 @@ export class ProdottoService {
     return this.http.get<Prodotto[]>(url+"/fornitore/prodotti/"+id_fornitore);
   }
 
+  public getProdotto(id_prodotto:number):Observable<Prodotto>{
+    return this.http.get<Prodotto>(url+"/prodotto/"+id_prodotto);
+  }
 
+  public editProdotto(prodotto:Prodotto):Observable<string>{
+    return this.http.put<string>(url+"/prodotto",prodotto,{responseType:'text' as 'json'});
+  }
+
+  public createProdotto(prodotto:Prodotto):Observable<string>{
+    return this.http.get<string>(url+"/prodotto");
+  }
 
 
 

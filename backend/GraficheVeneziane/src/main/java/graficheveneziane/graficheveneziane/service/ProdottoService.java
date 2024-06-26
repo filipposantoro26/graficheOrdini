@@ -10,4 +10,8 @@ public interface ProdottoService {
     public List<Prodotto> getAllProduct();
 
     public List<Prodotto> getProdottiFornitore(Long id_fornitore);
+
+    Prodotto getProduct(Long id_prodotto);
+
+    String editProdoto(Prodotto prodotto);
 }

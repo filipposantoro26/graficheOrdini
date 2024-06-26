@@ -29,4 +29,15 @@ public class ProdottoController {
     public List<Prodotto> getAllProduct(){
         return prodottoService.getAllProduct();
     }
+
+    @GetMapping("/{id}")
+    public Prodotto getAllProduct(@PathVariable Long id){
+        return prodottoService.getProduct(id);
+    }
+
+    @PutMapping
+    public String editProdotto(@RequestBody Prodotto prodotto){
+        return prodottoService.editProdoto(prodotto);
+    }
+
 }

@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AddEditFornitoreComponent } from './components/fornitori/add-edit-fornitore/add-edit-fornitore.component';
+import { AddEditProdottoComponent } from './components/prodotti/add-edit-prodotto/add-edit-prodotto.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AddEditFornitoreComponent } from './components/fornitori/add-edit-forni
     StoricoComponent,
     TableComponent,
     ModalComponent,
-    AddEditFornitoreComponent
+    AddEditFornitoreComponent,
+    AddEditProdottoComponent
   ],
   imports: [
     BrowserModule,

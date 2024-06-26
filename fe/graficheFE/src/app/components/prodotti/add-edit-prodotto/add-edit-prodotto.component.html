@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Edit Supplier</h1>
+
+<form [formGroup]="prodottoForm">
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Nome</mat-label>
+      <input matInput id="nome_prodotto" formControlName="nome_prodotto" />
+      <mat-error *ngIf="prodottoForm.controls['nome_prodotto'].invalid ">
+        Nome è obbligatorio.
+      </mat-error>
+    </mat-form-field>
+    <div class="flex-container">
+      <mat-form-field appearance="fill" class="flex-item">
+        <mat-label>Descrizione prodotto</mat-label>
+        <input matInput id="descrizione_prodotto" formControlName="descrizione_prodotto"/>
+        <mat-error *ngIf="prodottoForm.controls['descrizione_prodotto'].invalid">
+            Descrizione prodotto è obbligatoria.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="flex-item">
+        <mat-label>Prezzo</mat-label>
+        <div class="input-group-prepend">€</div>
+        <input matInput id="prezzo" formControlName="prezzo" type="number"/>
+      </mat-form-field>
+    </div>
+   </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button *ngIf="data.action==='M'" type="submit" mat-button (click)="onSubmit()" [mat-dialog-close]="data" [disabled]="prodottoForm.invalid">Save</button>
+  </div>
+</form>

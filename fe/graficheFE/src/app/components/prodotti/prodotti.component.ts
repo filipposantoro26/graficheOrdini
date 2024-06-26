@@ -4,6 +4,9 @@ import { ProdottoTable } from 'src/app/model/tableModel/ProdottoTable';
 import { ProdottoService } from 'src/app/services/prodotto.service';
 import { TableAction, TableRow } from '../base/table/table.component';
 import { Subject, takeUntil } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { AddEditProdottoComponent } from './add-edit-prodotto/add-edit-prodotto.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-prodotti',
@@ -15,7 +18,11 @@ export class ProdottiComponent implements OnInit,OnDestroy{
   tableData : TableRow<ProdottoTable>[]=[];
   columns: Array<keyof ProdottoTable> = ['id_prodotto', 'nome_prodotto','descrizione_prodotto','fornitore','prezzo'];
   private destroy$ = new Subject<void>(); 
-  constructor(private prodottoService:ProdottoService){
+  constructor(
+    private prodottoService:ProdottoService,
+    public dialog: MatDialog,
+  
+    ){
   }
 
   ngOnInit(): void {
@@ -62,8 +69,9 @@ export class ProdottiComponent implements OnInit,OnDestroy{
   ];
 
   editProdotto(row: TableRow<ProdottoTable>) {
-    // Logica per modificare il prodotto
-    console.log('Editing prodotto', row);
+    this.prodottoService.getProdotto(row.data.id_prodotto).subscribe((prodotto:Prodotto)=>{
+      this.openAddSupplierDialog('M',prodotto);
+    })
   }
 
   deleteProdotto(row: TableRow<ProdottoTable>) {
@@ -74,5 +82,26 @@ export class ProdottiComponent implements OnInit,OnDestroy{
   viewProdotto(row: TableRow<ProdottoTable>) {
     // Logica per visualizzare il prodotto
     console.log('Viewing prodotto', row);
+  }
+
+  openAddSupplierDialog(action:string,prodotto?:Prodotto): void {
+  
+    const data = {prodotto:prodotto,action:action}; // Dati di esempio per l'aggiunta
+    const dialogRef = this.dialog.open(AddEditProdottoComponent, {
+      width:'80%',
+      height:'80%',
+      data: data,
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      
+      this.prodottoService.getAll()
+      .pipe(takeUntil(this.destroy$)) 
+      .subscribe((prodotti:Prodotto[])=>{
+        this.prodotti=prodotti;
+        this.tableData=[];
+        this.tableData=this.updateTableData(this.tableData);
+      });
+    });
   }
 }
