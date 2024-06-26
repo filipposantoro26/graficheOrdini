@@ -29,10 +29,20 @@ public class FornitoreController {
     public List<Fornitore> getFornitori (){
         return fornitoreService.getFornitori();
     }
+    @GetMapping("/{id}")
+    public Fornitore getFornitore (@PathVariable Long id){
+        return fornitoreService.getFornitore(id);
+    }
+
 
     @GetMapping("/prodotti/{id}")
     public List<Prodotto> getProdottiFornitore (@PathVariable Long id){
         return prodottoService.getProdottiFornitore(id);
+    }
+
+    @PutMapping
+    public String editFornitore(@RequestBody Fornitore fornitore){
+        return this.fornitoreService.editFornitore(fornitore);
     }
 
 }

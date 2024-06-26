@@ -7,7 +7,7 @@ import { ProdottoService } from 'src/app/services/prodotto.service';
 import { Prodotto } from 'src/app/model/Prodotto';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalComponent } from '../base/modal/modal.component';
+import { AddEditFornitoreComponent } from './add-edit-fornitore/add-edit-fornitore.component';
 
 @Component({
   selector: 'app-fornitori',
@@ -15,6 +15,7 @@ import { ModalComponent } from '../base/modal/modal.component';
   styleUrls: ['./fornitori.component.css']
 })
 export class FornitoriComponent implements OnInit,OnDestroy{
+
   
   fornitori: Fornitore[]=[];
   tableData : TableRow<Fornitore>[]=[];
@@ -28,16 +29,22 @@ export class FornitoriComponent implements OnInit,OnDestroy{
   }
 
   ngOnInit(): void {
-    this.fornitoreService.getAll()
-    .pipe(takeUntil(this.destroy$)) 
-    .subscribe((fornitori:Fornitore[])=>{
-      this.fornitori=fornitori;
-      this.tableData=this.updateTableData(this.tableData);
-    });
+    this.getFornitori();
+    
   }
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  getFornitori(){
+    this.fornitoreService.getAll()
+    .pipe(takeUntil(this.destroy$)) 
+    .subscribe((fornitori:Fornitore[])=>{
+      this.fornitori=fornitori;
+      this.tableData=[];
+      this.tableData=this.updateTableData(this.tableData);
+    });
   }
   updateTableData(tableData:TableRow<Fornitore>[]){
     this.fornitori.forEach(function (value) {
@@ -56,14 +63,28 @@ export class FornitoriComponent implements OnInit,OnDestroy{
       action: (row: TableRow<Fornitore>) => this.deleteFornitore(row)
     },
     {
+      label: 'Vedi Informazioni Fornitore',
+      action: (row: TableRow<Fornitore>) => this.viewFornitore(row)
+    },
+    {
       label: 'Vedi Prodotti',
       action: (row: TableRow<Fornitore>) => this.viewProdottiFornitore(row)
     }
   ];
 
   editFornitore(row: TableRow<Fornitore>) {
-    // Logica per modificare il fornitore
-    console.log('Editing fornitore', row);
+    if(row.data.id_fornitore!=null){
+      this.fornitoreService.getFornitore(row.data.id_fornitore).subscribe((fornitore:Fornitore)=>{
+        this.openAddSupplierDialog('M',fornitore);
+      })
+    }
+  }
+  viewFornitore(row: TableRow<Fornitore>) {
+    if(row.data.id_fornitore!=null){
+      this.fornitoreService.getFornitore(row.data.id_fornitore).subscribe((fornitore:Fornitore)=>{
+        this.openAddSupplierDialog('V',fornitore);
+      })
+    }
   }
 
   deleteFornitore(row: TableRow<Fornitore>) {
@@ -82,15 +103,17 @@ export class FornitoriComponent implements OnInit,OnDestroy{
 }
 
 
-openAddSupplierDialog(): void {
-  const data = { name: '', address: '' }; // Dati di esempio per l'aggiunta
-  const dialogRef = this.dialog.open(ModalComponent, {
-    width:'400px',
+openAddSupplierDialog(action:string,fornitore?:Fornitore): void {
+  
+  const data = {fornitore:fornitore,action:action}; // Dati di esempio per l'aggiunta
+  const dialogRef = this.dialog.open(AddEditFornitoreComponent, {
+    width:'80%',
+    height:'80%',
     data: data,
   });
 
   dialogRef.afterClosed().subscribe(result => {
-    console.log('Dialog result:', result);
+    this.getFornitori();
   });
 }
 

@@ -9,4 +9,8 @@ public interface FornitoreService {
     public Fornitore createFornitore(Fornitore fornitore);
 
     List<Fornitore> getFornitori();
+
+    Fornitore getFornitore(Long id_fornitore);
+
+    String editFornitore(Fornitore fornitore);
 }

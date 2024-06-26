@@ -1,0 +1,65 @@
+<h1 mat-dialog-title>Edit Supplier</h1>
+
+<form [formGroup]="fornitoreForm">
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Nome</mat-label>
+      <input matInput id="nome_fornitore" formControlName="nome_fornitore" />
+      <mat-error *ngIf="fornitoreForm.controls['nome_fornitore'].invalid ">
+        Nome è obbligatorio.
+      </mat-error>
+    </mat-form-field>
+    <div class="flex-container">
+      <mat-form-field appearance="fill" class="flex-item">
+        <mat-label>Email</mat-label>
+        <input matInput id="email" formControlName="email"/>
+        <mat-error *ngIf="fornitoreForm.controls['email'].invalid">
+          Email è obbligatorio.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="flex-item">
+        <mat-label>Referente</mat-label>
+        <input matInput id="referente" formControlName="referente" />
+      </mat-form-field>
+    </div>
+    <div class="flex-container">
+      <mat-form-field appearance="fill"  class="flex-item">
+        <mat-label>Numero cellulare</mat-label>
+        <input matInput id="numero_cellulare" formControlName="numero_cellulare" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill"  class="flex-item">
+        <mat-label>Numero fisso</mat-label>
+        <input matInput id="numero_fisso" formControlName="numero_fisso" />
+      </mat-form-field>
+    </div>
+    <div class="flex-container">
+    <mat-form-field appearance="fill" class="flex-item">
+      <mat-label>Via</mat-label>
+      <input matInput id="via" formControlName="via" />
+    </mat-form-field>
+
+    
+      <mat-form-field appearance="fill" class="flex-item">
+        <mat-label>Cap</mat-label>
+        <input matInput id="cap" formControlName="cap" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="flex-item">
+        <mat-label>Provincia</mat-label>
+        <input matInput id="provincia" formControlName="provincia" />
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Partita IVA</mat-label>
+      <input matInput id="p_iva" formControlName="p_iva" />
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button *ngIf="data.action==='M'" type="submit" mat-button (click)="onSubmit()" [mat-dialog-close]="data" [disabled]="fornitoreForm.invalid">Save</button>
+  </div>
+</form>

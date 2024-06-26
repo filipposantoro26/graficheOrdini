@@ -1,0 +1,28 @@
+.full-width {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    display: block;
+    margin-bottom: 16px;
+  }
+  
+  .mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+  }
+  
+  button {
+    margin-left: 8px;
+  }
+  
+  .flex-container {
+    display: flex;
+    gap: 16px; /* Spazio tra i due campi */
+  }
+  
+  .flex-item {
+    flex: 1;
+  }
+  

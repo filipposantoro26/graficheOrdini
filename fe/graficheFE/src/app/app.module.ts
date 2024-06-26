@@ -20,6 +20,7 @@ import { ModalComponent } from './components/base/modal/modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { AddEditFornitoreComponent } from './components/fornitori/add-edit-fornitore/add-edit-fornitore.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MatInputModule } from '@angular/material/input';
     OrdiniComponent,
     StoricoComponent,
     TableComponent,
-    ModalComponent
+    ModalComponent,
+    AddEditFornitoreComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,11 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     ReactiveFormsModule,
     MatSnackBarModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
