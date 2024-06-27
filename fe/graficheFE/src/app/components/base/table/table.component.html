@@ -3,13 +3,19 @@
     <thead class="thead-dark">
       <tr>
         <th *ngFor="let column of columns">{{ column }}</th>
-        <th *ngFor="let action of actions">{{ action.label }}</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let row of tableData; let i = index">
         <td *ngFor="let column of columns">{{ row.data[column] }}</td>
-        <td *ngFor="let action of actions" (click)="action.action(row)" ><div class="btn btn-light">{{ action.label }}</div></td>
+        <td>
+          <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item *ngFor="let action of actions" (click)="action.action(row)">{{action.label}}</button>
+          </mat-menu>
+          
+        </td>
       </tr>
     </tbody>
   </table>

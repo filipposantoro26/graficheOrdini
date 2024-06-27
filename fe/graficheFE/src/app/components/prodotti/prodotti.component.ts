@@ -80,8 +80,11 @@ export class ProdottiComponent implements OnInit,OnDestroy{
   }
 
   viewProdotto(row: TableRow<ProdottoTable>) {
-    // Logica per visualizzare il prodotto
-    console.log('Viewing prodotto', row);
+    if(row.data.id_prodotto!=null){
+      this.prodottoService.getProdotto(row.data.id_prodotto).subscribe((prodotto:Prodotto)=>{
+        this.openAddSupplierDialog('V',prodotto);
+      })
+    }
   }
 
   openAddSupplierDialog(action:string,prodotto?:Prodotto): void {

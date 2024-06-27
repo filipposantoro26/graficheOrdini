@@ -14,7 +14,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { MatMenuModule } from '@angular/material/menu';
 import { TableComponent } from './components/base/table/table.component';
 import { ModalComponent } from './components/base/modal/modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -50,7 +50,8 @@ import { AddEditProdottoComponent } from './components/prodotti/add-edit-prodott
     ReactiveFormsModule,
     FormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatMenuModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
