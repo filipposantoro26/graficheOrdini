@@ -5,7 +5,7 @@ import graficheveneziane.graficheveneziane.model.Prodotto;
 
 public interface ProdottoService {
 
-    public Prodotto createProduct(Prodotto prodotto);
+    public String createProduct(Prodotto prodotto);
 
     public List<Prodotto> getAllProduct();
 

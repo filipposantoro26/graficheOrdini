@@ -16,7 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ProdottiComponent implements OnInit,OnDestroy{
   prodotti: Prodotto[] | undefined=[];
   tableData : TableRow<ProdottoTable>[]=[];
-  columns: Array<keyof ProdottoTable> = ['id_prodotto', 'nome_prodotto','descrizione_prodotto','fornitore','prezzo'];
+  columns: Array<keyof ProdottoTable> = [ 'nome_prodotto','descrizione_prodotto','fornitore','prezzo'];
   private destroy$ = new Subject<void>(); 
   constructor(
     private prodottoService:ProdottoService,
@@ -70,7 +70,7 @@ export class ProdottiComponent implements OnInit,OnDestroy{
 
   editProdotto(row: TableRow<ProdottoTable>) {
     this.prodottoService.getProdotto(row.data.id_prodotto).subscribe((prodotto:Prodotto)=>{
-      this.openAddSupplierDialog('M',prodotto);
+      this.openAddProductDialog('M',prodotto);
     })
   }
 
@@ -82,12 +82,12 @@ export class ProdottiComponent implements OnInit,OnDestroy{
   viewProdotto(row: TableRow<ProdottoTable>) {
     if(row.data.id_prodotto!=null){
       this.prodottoService.getProdotto(row.data.id_prodotto).subscribe((prodotto:Prodotto)=>{
-        this.openAddSupplierDialog('V',prodotto);
+        this.openAddProductDialog('V',prodotto);
       })
     }
   }
 
-  openAddSupplierDialog(action:string,prodotto?:Prodotto): void {
+  openAddProductDialog(action:string,prodotto?:Prodotto): void {
   
     const data = {prodotto:prodotto,action:action}; // Dati di esempio per l'aggiunta
     const dialogRef = this.dialog.open(AddEditProdottoComponent, {

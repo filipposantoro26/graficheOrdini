@@ -31,7 +31,7 @@ export class ProdottoService {
   }
 
   public createProdotto(prodotto:Prodotto):Observable<string>{
-    return this.http.get<string>(url+"/prodotto");
+    return this.http.post<string>(url+"/prodotto",prodotto,{responseType:'text' as 'json'});
   }
 
 

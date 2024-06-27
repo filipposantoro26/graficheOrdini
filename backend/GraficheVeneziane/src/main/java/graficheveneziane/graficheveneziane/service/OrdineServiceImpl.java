@@ -38,7 +38,7 @@ public class OrdineServiceImpl implements OrdineService {
 
             ordineRepository.save(ordine);
             for(ProdottiQuantita p:prodottiQuantita){
-                ordineProdottoRepository.save(new OrdineProdotto(new OrdineProdottoKey(id_fornitore,p.getProdotto().getId_prodotto()),ordine,p.getProdotto(),p.getQuantita()));
+                ordineProdottoRepository.save(new OrdineProdotto(new OrdineProdottoKey(id_fornitore,p.getProdotto().getId_prodotto()),ordine,p.getProdotto(),p.getQuantita(),p.getTipo_quantita()));
 
             }
             return ordineRepository.findById(ordine.getId_ordine()).get();

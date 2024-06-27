@@ -21,15 +21,15 @@ public class ProdottoServiceImpl implements ProdottoService{
     @Autowired
     private FornitoreRepository fornitoreRepository;
     @Override
-    public Prodotto createProduct(Prodotto prodotto) {
+    public String createProduct(Prodotto prodotto) {
         System.out.println(prodotto.getFornitore());
         Optional<Fornitore> fornitore =fornitoreRepository.findById(prodotto.getFornitore().getId_fornitore());
         if(fornitore.isPresent()) {
             prodotto.setFornitore(fornitore.get());
-            prodotto=prodottoRepository.save(prodotto);
-            return prodottoRepository.findById(prodotto.getId_prodotto()).get();
+            prodottoRepository.save(prodotto);
+            return "Prodotto creato correttamente";
         }
-        return null;
+        return "Prodotto non creato correttamente";
     }
 
     @Override

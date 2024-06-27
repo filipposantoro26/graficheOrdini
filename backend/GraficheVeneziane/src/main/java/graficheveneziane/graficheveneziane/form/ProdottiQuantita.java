@@ -9,4 +9,6 @@ import lombok.Setter;
 public class ProdottiQuantita{
     private Prodotto prodotto;
     private double quantita;
+
+    private String tipo_quantita;
 }

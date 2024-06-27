@@ -2,6 +2,14 @@
 
 <form [formGroup]="prodottoForm">
   <div mat-dialog-content>
+    <mat-form-field *ngIf="data.action === 'I'" appearance="fill" class="full-width">
+      <mat-label>Fornitore</mat-label>
+      <mat-select formControlName="fornitore">
+        <mat-option *ngFor="let fornitore of fornitori" [value]="{id_fornitore:fornitore.id_fornitore}">
+          {{ fornitore.nome_fornitore }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Nome</mat-label>
       <input matInput id="nome_prodotto" formControlName="nome_prodotto" />
@@ -27,6 +35,6 @@
    </div>
   <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">Cancel</button>
-    <button *ngIf="data.action==='M'" type="submit" mat-button (click)="onSubmit()" [mat-dialog-close]="data" [disabled]="prodottoForm.invalid">Save</button>
+    <button *ngIf="data.action==='M' || data.action==='I'" type="submit" mat-button (click)="onSubmit()" [mat-dialog-close]="data" [disabled]="prodottoForm.invalid">Save</button>
   </div>
 </form>

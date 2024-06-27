@@ -18,7 +18,7 @@ export class StoricoComponent implements OnInit,OnDestroy{
   private destroy$ = new Subject<void>(); 
   ordini:Ordine[]=[];
   tableData:TableRow<OrdineTable>[]=[];
-  columns: Array<keyof OrdineTable> = ['id_ordine', 'fornitore','dateCreated'];
+  columns: Array<keyof OrdineTable> = [ 'fornitore','dateCreated'];
   
   constructor(private ordineService:OrdineService,@Inject(LOCALE_ID) public locale: string){}
   

@@ -28,6 +28,8 @@ public class OrdineProdotto {
 
     @Column
     private double quantita;
+    @Column
+    private String tipo_quantita;
 
 
 }

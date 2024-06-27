@@ -19,7 +19,7 @@ export class FornitoriComponent implements OnInit,OnDestroy{
   
   fornitori: Fornitore[]=[];
   tableData : TableRow<Fornitore>[]=[];
-  columns: Array<keyof Fornitore> = ['id_fornitore', 'nome_fornitore','email','referente','numero_cellulare','numero_fisso','via','cap','provincia','p_iva'];
+  columns: Array<keyof Fornitore> = ['nome_fornitore','email','referente','numero_fisso','provincia','p_iva'];
   private destroy$ = new Subject<void>(); 
   constructor(
     private fornitoreService:FornitoriService,

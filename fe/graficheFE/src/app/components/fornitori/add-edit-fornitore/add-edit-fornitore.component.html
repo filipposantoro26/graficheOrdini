@@ -60,6 +60,6 @@
 
   <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">Cancel</button>
-    <button *ngIf="data.action==='M'" type="submit" mat-button (click)="onSubmit()" [mat-dialog-close]="data" [disabled]="fornitoreForm.invalid">Save</button>
+    <button *ngIf="data.action==='M' || data.action==='I'" type="submit" mat-button (click)="onSubmit()" [mat-dialog-close]="data" [disabled]="fornitoreForm.invalid">Save</button>
   </div>
 </form>

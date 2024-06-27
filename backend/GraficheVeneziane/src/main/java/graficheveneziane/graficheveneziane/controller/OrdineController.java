@@ -97,13 +97,14 @@ public class OrdineController {
 
         // Tabella dei prodotti da ordinare
         document.add(new Paragraph("\n"));
-        Table table = new Table(UnitValue.createPercentArray(new float[]{3, 4, 1}));
+        Table table = new Table(UnitValue.createPercentArray(new float[]{3, 4, 1,1}));
         table.setWidth(UnitValue.createPercentValue(100));
 
         // Intestazioni delle colonne
         table.addHeaderCell(new Cell().add(new Paragraph("Nome Prodotto").setFont(bold).setFontSize(12)));
         table.addHeaderCell(new Cell().add(new Paragraph("Descrizione").setFont(bold).setFontSize(12)));
         table.addHeaderCell(new Cell().add(new Paragraph("Quantità").setFont(bold).setFontSize(12)));
+        table.addHeaderCell(new Cell().add(new Paragraph("Tipo").setFont(bold).setFontSize(12)));
 
         // Esempio di righe di prodotti
        /* for (int i = 0; i < 5; i++) {
@@ -116,6 +117,7 @@ public class OrdineController {
             table.addCell(new Cell().add(new Paragraph(p.getProdotto().getNome_prodotto()).setFont(font).setFontSize(12)));
             table.addCell(new Cell().add(new Paragraph(p.getProdotto().getDescrizione_prodotto()).setFont(font).setFontSize(12)));
             table.addCell(new Cell().add(new Paragraph(String.valueOf(p.getQuantita())).setFont(font).setFontSize(12)));
+            table.addCell(new Cell().add(new Paragraph(p.getTipo_quantita()).setFont(font).setFontSize(12)));
         }
         document.add(table);
 

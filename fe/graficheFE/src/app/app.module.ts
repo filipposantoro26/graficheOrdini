@@ -22,6 +22,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AddEditFornitoreComponent } from './components/fornitori/add-edit-fornitore/add-edit-fornitore.component';
 import { AddEditProdottoComponent } from './components/prodotti/add-edit-prodotto/add-edit-prodotto.component';
+import { MatSelectModule, } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { AddEditProdottoComponent } from './components/prodotti/add-edit-prodott
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatMenuModule 
+    MatMenuModule ,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

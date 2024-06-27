@@ -52,31 +52,7 @@ export class OrdiniComponent implements OnInit,OnDestroy{
   .pipe(takeUntil(this.destroy$)) 
   .subscribe((ordine:Ordine)=>{
     console.log(ordine);
-    if(ordine!== null){
-      /*const dialogRef = this.dialogModule.open(ModalComponent,{
-        width:"250px",
-        data:"Ordine effettuato correttamente"
-      })
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-        this.ordineService.getPDF(ordine.id_ordine)
-        .pipe(takeUntil(this.destroy$)) 
-        .subscribe((pdf:any)=>{
-        const blob = new Blob([pdf], { type: 'application/pdf' });
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `ordine_${ordine.id_ordine}.pdf`; // Nome del file da scaricare
-        document.body.appendChild(a);
-        a.click();
-    
-    // Rimuovi il link temporaneo dal DOM
-    document.body.removeChild(a);
-    window.URL.revokeObjectURL(url);
-      })
-      });
-      */
-      
+    if(ordine!== null){  
       console.log("open")
       let snackBarRef =this.snackBar.open("ordine effettuato correttamente", "scarica", {
         duration: 5000,
@@ -126,7 +102,7 @@ export class OrdiniComponent implements OnInit,OnDestroy{
   onProdottoChange(event:any, prodotto:Prodotto){
     if (event.target.checked) {
       
-      this.ordineForm.prodottiQuantita.push({prodotto:prodotto,quantita:1})
+      this.ordineForm.prodottiQuantita.push({prodotto:prodotto,quantita:1,tipo_quantita:"pz"})
    
     } else {
       this.ordineForm.prodottiQuantita = this.ordineForm.prodottiQuantita.filter(
@@ -144,6 +120,20 @@ export class OrdiniComponent implements OnInit,OnDestroy{
           p.quantita=newQt;
         }else{
           console.log("is "+ p.quantita)
+        }
+      })
+    }
+  }
+  onTipoQuantitaChange(event:any, prodotto:Prodotto){
+    console.log("sium");
+    const newTipoQt=event.target.value;
+    console.log(event.target.value);
+    if(newTipoQt!=''){
+      this.ordineForm.prodottiQuantita.map(p =>{
+        if(p.prodotto.id_prodotto===prodotto.id_prodotto){
+          p.tipo_quantita=newTipoQt;
+        }else{
+          console.log("is "+ p.tipo_quantita)
         }
       })
     }

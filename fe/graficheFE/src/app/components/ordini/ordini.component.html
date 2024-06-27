@@ -27,7 +27,7 @@
               <label class="form-input-label me-2" for="quantity-{{prodotto.id_prodotto}}">Quantità:</label>
               <input class="form-control form-control-sm d-inline-block me-2" id="quantity-{{prodotto.id_prodotto}}" type="number" style="width: 70px;" [value]="1" [min]="1" (input)="onQuantitaChange($event,prodotto)" >
               <label class="me-2" for="unit-{{prodotto.id_prodotto}}">Unità:</label>
-              <select id="unit-{{prodotto.id_prodotto}}" class="form-select form-select-sm" style="width: auto;">
+              <select id="unit-{{prodotto.id_prodotto}}" class="form-select form-select-sm" style="width: auto;" (input)="onTipoQuantitaChange($event,prodotto)">
                 <option value="pezzi">pezzi</option>
                 <option value="scatole">scatole</option>
                 <option value="confezioni">confezioni</option>
